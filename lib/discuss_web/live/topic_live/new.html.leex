@@ -1,0 +1,8 @@
+<%= f = form_for @changeset, "#", [phx_change: :validate, phx_submit: :save, phx_hook: "SavedForm"] %>
+  <div class="form-group">
+    <%= text_input f, :title, placeholder: "Title", phx_debounce: "blur", class: "form-control" %>
+    <%= error_tag f, :title %>
+  </div>
+
+  <%= submit "Save Topic", phx_disable_with: "Saving...", class: "btn btn-primary" %>
+</form>

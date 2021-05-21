@@ -1,0 +1,22 @@
+<h5>Topics</h5>
+
+<ul class="collection">
+  <%= for topic <- @topics do %>
+  <li class="collection-item">
+    <%= live_redirect topic.title, to: Routes.live_path(@socket, DiscussWeb.TopicLive.Show, topic) %>
+    <%= if @user && @user.id == topic.user_id do %>
+    <div class="right">
+      <%= live_redirect "Edit", to: Routes.live_path(@socket, DiscussWeb.TopicLive.Edit, topic) %>
+      <%= live_redirect "Delete", to: "#", phx_click: "delete_topic", phx_value_id: topic.id %>
+    </div>
+  <% end %>
+  </li>
+<% end %>
+</ul>
+
+<div class="fixed-action-btn">
+  <%= live_redirect to: Routes.live_path(@socket, DiscussWeb.TopicLive.New), class: "btn-floating btn-large waves-effect waves-light green" do %>
+    <i class="material-icons">add</i>
+  <% end %>
+</div>
+
