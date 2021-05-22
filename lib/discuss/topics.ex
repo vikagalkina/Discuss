@@ -127,7 +127,7 @@ defmodule Discuss.Topics do
     Topic.changeset(topic, attrs)
   end
 
-  defp broadcast_change({:error, result}) do
+  defp broadcast_change({:error, result}, event) do
     {:error, result}
   end
 

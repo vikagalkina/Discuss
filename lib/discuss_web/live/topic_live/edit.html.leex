@@ -1,8 +1,2 @@
-<%= f = form_for @changeset, "#", [phx_change: :validate, phx_submit: :save, phx_hook: "SavedForm"] %>
-  <div class="form-group">
-    <%= text_input f, :title, placeholder: "Title", phx_debounce: "blur", class: "form-control" %>
-    <%= error_tag f, :title %>
-  </div>
-
-<%= submit "Save Topic", class: "btn btn-primary", phx_disable_with: "Saving..." %>
-</form>
+<%= live_component @socket, DiscussWeb.TopicLive.TopicFormComponent, id: @topic.id,
+  changeset: @changeset, user: @user, submit_event: :update, topic: @topic %>
